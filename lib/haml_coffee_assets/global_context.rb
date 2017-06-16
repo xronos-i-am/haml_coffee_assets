@@ -32,7 +32,10 @@ module HamlCoffeeAssets
     def self.find_asset(name)
       return "" unless ::Rails.respond_to?(:application)
       return "" unless ::Rails.application.respond_to?(:assets)
-      env.find_asset(name)
+      return env.find_asset(name) if env
+      # ::Rails.application.assets is nil when config.assets.compile = false
+      # search asset in precompiled set
+      ::Rails.application.assets_manifest.find_sources(name).first
     end
   end
 end

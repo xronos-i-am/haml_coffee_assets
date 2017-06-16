@@ -17,6 +17,9 @@ module HamlCoffeeAssets
       initializer 'sprockets.hamlcoffeeassets', group: :all, after: 'sprockets.environment' do |app|
         require 'haml_coffee_assets/action_view/template_handler'
 
+        # Precompiled version for server side renderring with config.assets.compile = false
+        config.assets.precompile << ::HamlCoffeeAssets.config.global_context_asset
+
         # No server side template support with AMD
         if ::HamlCoffeeAssets.config.placement == 'global'
 

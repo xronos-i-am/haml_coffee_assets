@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem "rails", github: "rails/rails"
+gem "rails", '~> 5.0.0'
 
 platform :ruby do
   gem 'therubyracer'
